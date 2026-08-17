@@ -54,3 +54,53 @@ GROUP BY St_Address ,dept_id
 SELECT count (st_id),dept_id 
  from Student
  GROUP BY Dept_Id
+SELECT sum (salary) ,dept_id
+from Instructor 
+ where salary>1000
+GROUP BY dept_id
+
+SELECT sum (salary) ,dept_id
+from Instructor 
+ 
+GROUP BY dept_id
+having sum (Salary)>30000
+
+SELECT sum (salary) ,dept_id
+from Instructor 
+ 
+GROUP BY dept_id
+having sum (Ins_Id)>6
+--group by with having 
+-- having withou group by 
+SELECT SUM(salary ),AVG(salary)
+FROM Instructor 
+HAVING count (Ins_Id)<100
+--subqure 
+SELECT * 
+from Student 
+WHERE st_age <(select avg(st_age)FROM Student)--inner quruie
+select * , (select count(st_id)from Student)
+from Student
+SELECT dept_name
+from Department 
+WHERE dept_id  in (
+    select distinct Dept_Id
+    from Student 
+    WHERE Dept_Id is not Null
+) 
+SELECT distinct dept_name
+from Student  s INNER JOIN Department D 
+on d.Dept_Id =s.Dept_Id 
+SELECT *
+from  Student 
+WHERE St_Age > ALL (select distinct st_age from Student WHERE St_Address ='cairo')
+--join _dml 
+--sub +dml 
+DELETE from Stud_Course 
+where st_id ='sd'
+----------
+DELETE from Stud_Course 
+where st_id in (select st_id
+from Student s INNER JOIN Department d 
+on d.Dept_Id =s.Dept_Id and Dept_Name ='sd')
+----------
