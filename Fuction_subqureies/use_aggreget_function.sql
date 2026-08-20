@@ -104,3 +104,131 @@ where st_id in (select st_id
 from Student s INNER JOIN Department d 
 on d.Dept_Id =s.Dept_Id and Dept_Name ='sd')
 ----------
+--union
+-- batch 
+-- sef of indebnednt queries 
+SELECT st_fname as [names]
+from Student 
+UNION ALL
+SELECT ins_name 
+FROM Instructor 
+----------------
+SELECT  CONVERT( varchar(10),St_Id) as [student]
+from Student 
+UNION ALL
+SELECT ins_name 
+FROM Instructor 
+-- union --distinct  order _uniqe+  data 
+select st_fname as names 
+from Student 
+UNION 
+SELECT ins_name 
+from Instructor
+------
+select  St_Fname  
+from student 
+INTERSECT 
+SELECT ins_name 
+from Instructor 
+
+-----------
+select  St_Fname   ,St_Id
+from student 
+INTERSECT 
+SELECT ins_name ,Ins_Id
+from Instructor 
+------------
+select  St_Fname   
+from student 
+EXCEPT  ---EXCEPTion after that 
+
+SELECT ins_name 
+from Instructor 
+-----
+SELECT st_fname  +' '+st_lname  as fallname
+from Student
+ORDER BY fullname
+
+-----
+SELECT st_fname  +' '+st_lname  as fallname
+from Student
+WHERE fullname=' kirollos nabil '
+
+---- 
+select *
+from (SELECT st_fname +''+st_lname as  fullname
+          from Student) as newtable
+where fullname ='ahmed hassan'
+-- -------bulit in fnction
+-- Built-in Functions
+-- │
+-- ├── Aggregate Functions
+-- │   ├── COUNT()
+-- │   ├── SUM()
+-- │   ├── AVG()
+-- │   ├── MIN()
+-- │   └── MAX()
+-- │
+-- ├── String Functions
+-- │   ├── LEN()
+-- │   ├── UPPER()
+-- │   ├── LOWER()
+-- │   └── CONCAT()
+-- │
+-- ├── Date & Time Functions
+-- │   ├── GETDATE()
+-- │   ├── DATEPART()
+-- │   └── DATEDIFF()
+-- │
+-- ├── Mathematical Functions
+-- │   ├── ROUND()
+-- │   ├── CEILING()
+-- │   └── FLOOR()
+-- │
+-- ├── NULL Functions
+-- │   ├── ISNULL()
+-- │   └── COALESCE()
+-- │
+-- └── Conditional Logic
+--     └── CASE
+SELECT DB_NAME()
+SELECT SUSER_NAME() 
+select HOST_NAME()
+if OBJECT_ID('exam') is null 
+CREATE TABLE exam
+    (
+      id int , 
+      edate VARCHAR (10)
+    )
+SELECT  COL_NAME(OBJECT_ID('student '),2)
+SELECT IDENT_CURRENT('student')
+-- NOW() – Current date and time (MySQL)
+-- CURRENT_DATE – Current date
+-- CURRENT_TIME – Current time
+-- DATE_ADD() – Add time interval
+-- DATE_SUB() – Subtract time interval
+-- DATEDIFF() – Difference between dates
+-- DATE_FORMAT() – Format date
+-- YEAR(), MONTH(), DAY() – Extract date parts
+-- HOUR(), MINUTE(), SECOND() – Extract time parts
+-- EXTRACT() – Extract any part of a date/time (PostgreSQL, MySQL)
+SELECT GETDATE()
+SELECT YEAR(GETDATE())
+SELECT day(GETDATE())
+SELECT MONTH(GETDATE())
+SELECT DATEPART(MONTH,GETDATE())
+SELECT DATENAME(MONTH,GETDATE())
+SELECT dept_name ,year(manager_hiredate)
+from Department 
+-----
+SELECT dept_name ,DATEDIFF(year,manager_hiredate,GETDATE())
+from Department 
+select DATEFROMPARTS(2000,3,23 )
+SELECT ISDATE('1/1/2000')
+SELECT DATEADD(day,7,GETDATE())
+SELECT CONVERT(VARCHAR(50),GETDATE() )
+SELECT cast(GETDATE()as varchar(50))
+
+SELECT CONVERT(VARCHAR(50),GETDATE() ,101)
+SELECT CONVERT(VARCHAR(50),GETDATE() ,105)
+SELECT FORMAT( GETDATE(),'dd-mm-yyyy')
