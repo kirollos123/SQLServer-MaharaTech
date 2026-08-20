@@ -232,3 +232,17 @@ SELECT cast(GETDATE()as varchar(50))
 SELECT CONVERT(VARCHAR(50),GETDATE() ,101)
 SELECT CONVERT(VARCHAR(50),GETDATE() ,105)
 SELECT FORMAT( GETDATE(),'dd-mm-yyyy')
+--nu
+SELECT isNULL(st_fname,st_lname)
+FROM Student 
+SELECT coalesce(st_fname,st_address ,'no data')
+from Student
+SELECT nullif('ahmed','amr')
+---string fun
+SELECT isnull (st_fname,'')+''+CONVERT(varchar(20),ISNULL (st_age,0))
+from student
+SELECT CONCAT (st_fname,' ',st_age)
+from Student
+SELECT CONCAT ('stud name= ',st_fname,'&age= ',st_age)
+from Student
+SELECT CONCAT_WS()
