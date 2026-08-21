@@ -245,4 +245,46 @@ SELECT CONCAT (st_fname,' ',st_age)
 from Student
 SELECT CONCAT ('stud name= ',st_fname,'&age= ',st_age)
 from Student
-SELECT CONCAT_WS()
+select string_agg (st_fname,'')
+from Student
+select * from string_split('c#,mvc ,gtmal ',',') 
+CREATE table mydata
+(
+    eid int PRIMARY KEy ,
+    ename VARCHAR(20),
+    skills VARCHAR(40)
+)
+SELECT * from mydata 
+
+SELECT eid ,ename ,value
+from mydata cross apply string_split(skills,',') 
+---aggtegetion function 
+----math function 
+--cass stetemnt 
+SELECT ins_name ,salary 
+from Instructor 
+SELECT ins_name,
+    case
+      when salary>=3000 then 'high salary'
+      when salary <3000 then 'low'
+      end 
+from Instructor
+SELECT ins_name,
+    case gender 
+      when 'f' then 'female'
+      when 'm' then 'male'
+      end as gend
+from Instructor
+
+SELECT ins_name, iif (salary>=3000,'high','low')
+from  Instructor
+UPDATE Instructor 
+set Salary =Salary *1.20
+SELECT salary from  Instructor
+UPDATE Instructor 
+    set salary =
+         case 
+            when Salary >=3000then salary *1.20
+            else salary *1.10
+        end
+    
