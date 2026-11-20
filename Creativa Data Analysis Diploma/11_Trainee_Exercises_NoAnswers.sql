@@ -12,40 +12,51 @@ GO
 -- The finance team needs a price list showing each product name, brand and unit price.
 -- Return the columns: ProductName, Brand, UnitPrice.
 
-
+SELECT ProductName , brand ,Unitprice 
+from Products 
 
 
 -- Exercise 2
 -- Show each product's name and its stock value in thousands of EGP (StockQty x
 -- UnitPrice / 1000). Return the columns: ProductName, Stock Value (K EGP).
-
-
+SELECT  ProductName as[name] ,StockQty ,
+StockQty * UnitPrice  / 1000 as [Stock Value]
+from Products
+  
+ 
 
 
 -- Exercise 3
 -- HR wants each employee's name and daily rate, assuming 22 working days a month
 -- (Salary / 22). Return the columns: FirstName, LastName, DailyRate.
 
+SELECT FirstName  ,   LastName , Salary /22 as [daily rate]
 
+   
+from Employees
 
 
 -- Exercise 4
 -- Which brands do we sell in each category? Show each category and brand pair once.
 -- Return the columns: CategoryID, Brand.
-
-
-
-
+SELECT DISTINCT 
+     Categories.CategoryID,Products.Brand
+FROM Categories
+JOIN Products 
+    on Categories.CategoryID=Products.CategoryID;
 -- Exercise 5
 -- Create a customer directory with one column in the format 'FirstName LastName -
 -- Segment'. Return the columns: CustomerDirectory.
-
-
-
+SELECT FirstName + ' ' + LastName + ' ' + Segment as CustomerDirectory
+from Customers
+ 
 
 -- Exercise 6
 -- Which audio products (CategoryID 5) are still being sold? Return the columns:
 -- ProductName, UnitPrice.
+select ProductName ,UnitPrice 
+FROM Products
+WHERE CategoryID = 5 and Discontinued =1
 
 
 
@@ -54,12 +65,21 @@ GO
 -- Which orders were placed in December 2025? Return the columns: OrderID, OrderDate,
 -- Status.
 
+select OrderID ,OrderDate ,Status
+from orders
+where OrderDate between '2025-12-01' and '2025-12-31'
 
 
 
 -- Exercise 8
 -- Which customers joined during 2025? Return the columns: FirstName, LastName,
 -- JoinDate.
+SELECT CategoryID, CategoryName
+FROM Categories;
+SELECT   FirstName , LastName  ,JoinDate
+from customers 
+
+where JoinDate BETWEEN'2025-1-01' and '2025-12-31'
 
 
 
@@ -67,15 +87,22 @@ GO
 -- Exercise 9
 -- Which smartphones or tablets cost more than 15,000 EGP? Return the columns:
 -- ProductName, CategoryID, UnitPrice.
+SELECT  ProductName ,ProductName ,UnitPrice
+ 
+from Products 
+where UnitPrice >15000 and(CategoryID = 2 OR CategoryID = 3) 
 
 
 
+  
 
 -- Exercise 10
 -- Find all products whose name contains the word 'Phone'. Return the columns:
 -- ProductName.
 
-
+SELECT ProductName
+from  Products
+where ProductName like '%Phone%'
 
 
 -- Exercise 11
