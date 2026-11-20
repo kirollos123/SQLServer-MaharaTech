@@ -109,12 +109,17 @@ where ProductName like '%Phone%'
 -- Which customers have a first name starting with 'M' or 'S'? Return the columns:
 -- FirstName, LastName.
 
+SELECT FirstName ,LastName
 
-
-
+from customers 
+WHERE FirstName LIKE 'M%'
+   OR FirstName LIKE 'S%';
 -- Exercise 12
 -- Which customers have no city recorded? Return the columns: CustomerID, FirstName,
 -- LastName.
+SELECT CustomerID ,FirstName ,LastName
+from customers
+where  City is null
 
 
 
@@ -123,8 +128,14 @@ where ProductName like '%Phone%'
 -- Which Store orders are still open (neither Delivered nor Cancelled)? Return the
 -- columns: OrderID, Status, EmployeeID.
 
-
-
+ SELECT OrderID ,Status,EmployeeID
+ FROM orders 
+WHERE Status <> 'Delivered'
+  AND Status <> 'Cancelled'
+  -- or 
+   SELECT OrderID ,Status,EmployeeID
+ FROM orders 
+WHERE Status NOT IN ('Delivered', 'Cancelled')
 
 -- Exercise 14
 -- Which products launched before 2023 are still being sold? Return the columns:

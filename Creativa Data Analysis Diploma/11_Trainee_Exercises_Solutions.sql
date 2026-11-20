@@ -108,7 +108,8 @@ where ProductName like '%Phone%'
 -- Exercise 11
 -- Which customers have a first name starting with 'M' or 'S'? Return the columns:
 -- FirstName, LastName.
-
+select distinct city 
+FROM customers
 
 
 
