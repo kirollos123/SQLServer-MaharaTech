@@ -140,6 +140,9 @@ WHERE Status NOT IN ('Delivered', 'Cancelled')
 -- Exercise 14
 -- Which products launched before 2023 are still being sold? Return the columns:
 -- ProductName, LaunchDate.
+SELECT ProductName ,LaunchDate 
+FROM products
+where launchDate <'2023' and (Discontinued='0' )
 
 
 
@@ -149,13 +152,20 @@ WHERE Status NOT IN ('Delivered', 'Cancelled')
 -- LastName, Salary.
 
 
+SELECT TOP (5) FirstName, LastName, Salary
+FROM Employees
+
+  
+  ORDER BY Salary DESC 
+
 
 
 -- Exercise 16
 -- How many orders came through each channel? Return the columns: Channel, Orders.
 
-
-
+SELECT Channel, COUNT(OrderID) AS Orders
+FROM Orders
+GROUP BY Channel;
 
 -- Exercise 17
 -- What is the total stock value (StockQty x UnitPrice) of each category? Highest first.
@@ -268,3 +278,31 @@ WHERE Status NOT IN ('Delivered', 'Cancelled')
 
 
 -- End of exercises.
+SELECT ProductName, CategoryID, UnitPrice
+FROM Products
+WHERE UnitPrice > 10000
+  AND Discontinued = 0;
+
+SELECT ProductName, CategoryID, UnitPrice
+FROM Products
+WHERE CategoryID = 2
+   OR CategoryID = 3;
+
+
+SELECT ProductName, CategoryID
+FROM Products
+
+WHERE CategoryID IN (2, 3, 5);
+
+SELECT FirstName ,LastName 
+FROM Employees
+where  EmployeeID in (3,4,5)
+
+SELECT ProductName, UnitPrice
+FROM Products
+WHERE UnitPrice BETWEEN 5000 AND 15000;
+-- or not wreite with BETWEEN 
+
+SELECT FirstName ,LastName  ,Salary
+FROM Employees
+where  Salary BETWEEN 5000 AND 15000;
