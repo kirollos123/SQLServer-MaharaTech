@@ -271,3 +271,21 @@ SELECT   city,
          count(*) AS Customers
 FROM     Customers
 GROUP BY City;
+SELECT Department, AVG(Salary) AS AverageSalary
+FROM Employees
+GROUP BY Department;
+select  ProductName , avg (UnitPrice) as avfUnitPrice
+from Products
+GROUP BY ProductName
+SELECT ProductName, MAX(UnitPrice) AS HighestProduct
+FROM Products
+GROUP BY ProductName;
+SELECT Status, COUNT(*) AS Orders
+FROM Orders
+GROUP BY Status;
+SELECT City, Segment, COUNT(*) AS Customers
+FROM Customers
+GROUP BY City, Segment;
+SELECT ManagerID,firstname, COUNT(*) AS Employees
+FROM Employees
+GROUP BY ManagerID;
