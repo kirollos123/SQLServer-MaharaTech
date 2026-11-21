@@ -180,14 +180,44 @@ ORDER BY TopPrice DESC;
 -- How many Business and how many Consumer customers do we have in each city? Return the
 -- columns: City, Segment, Customers.
 
+SELECT City, Segment, COUNT(Segment) AS Customers
+FROM Customers
+GROUP BY City, Segment
+ORDER BY City;
+
 -- Exercise 20
 -- Which products appear in 4 or more order lines? Return the columns: ProductID,
 -- OrderLines.
+SELECT ProductID, COUNT(ProductID), ProductName
+FROM Products
+GROUP BY ProductID, ProductName
+HAVING COUNT(ProductID) >= 2;
 -- Exercise 21
 -- Which order statuses have more than 5 orders? Return the columns: Status, Orders.
+SELECT  count (OrderID)as Orders ,Status  
+from Orders
+GROUP BY  Status
+HAVING count (OrderID) > 5;
+-- How many orders do we have for each status?
+-- Return the columns: Status, TotalOrders.
+SELECT status ,COUNT(OrderID) as TotalOrders
+from Orders
+GROUP BY status
+-- Which customers have placed more than 3 orders?
+-- Return the columns: CustomerID, TotalOrders.
+SELECT CustomerID, count (OrderID) as TotalOrders
+ from Orders
+ GROUP BY CustomerID
+ having COUNT(OrderID) > 3;
+ -- What is the average order amount for each customer?
+-- Return the columns: CustomerID, AverageOrderAmount.
+select CustomerID ,  AVG( OrderID) as AverageOrderAmount
+FROM Orders
+GROUP BY CustomerID
 -- Exercise 22
 -- In which months of 2025 did we receive 3 or more orders? Return the columns:
 -- OrderMonth, Orders.
+
 -- Exercise 23
 -- Which customers have ordered through both channels (Online and Store)? Return the
 -- columns: CustomerID, Channels.
