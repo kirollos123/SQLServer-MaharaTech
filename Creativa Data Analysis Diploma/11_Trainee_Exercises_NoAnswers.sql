@@ -217,10 +217,19 @@ GROUP BY CustomerID
 -- Exercise 22
 -- In which months of 2025 did we receive 3 or more orders? Return the columns:
 -- OrderMonth, Orders.
+SELECT
+    MONTH(OrderDate) AS OrderMonth,
+    COUNT(OrderID) AS Orders
+FROM Orders
+WHERE YEAR(OrderDate) = 2025
+GROUP BY MONTH(OrderDate)
+HAVING COUNT(OrderID) >= 3
+ORDER BY OrderMonth;
 
 -- Exercise 23
 -- Which customers have ordered through both channels (Online and Store)? Return the
 -- columns: CustomerID, Channels.
+SELECT 
 -- Exercise 24
 -- Which employees were hired before the Sales Manager? Return the columns: FirstName,
 -- LastName, HireDate.
