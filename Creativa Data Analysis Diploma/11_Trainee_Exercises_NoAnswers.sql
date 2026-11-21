@@ -159,14 +159,27 @@ GROUP BY Channel;
 -- Exercise 17
 -- What is the total stock value (StockQty x UnitPrice) of each category? Highest first.
 -- Return the columns: CategoryID, StockValue.
-
-
+SELECT
+    CategoryID,
+    SUM(StockQty * UnitPrice) AS StockValue
+FROM Products
+GROUP BY CategoryID
+ORDER BY StockValue DESC;
 -- Exercise 18
 -- For each brand, how many products do we have and what is the most expensive price?
 -- Return the columns: Brand, Products, TopPrice.
+
+SELECT Brand,count(ProductID) , 
+ MAX(UnitPrice) AS TopPrice
+
+from Products
+GROUP BY brand
+ORDER BY TopPrice DESC;
+
 -- Exercise 19
 -- How many Business and how many Consumer customers do we have in each city? Return the
 -- columns: City, Segment, Customers.
+
 -- Exercise 20
 -- Which products appear in 4 or more order lines? Return the columns: ProductID,
 -- OrderLines.
@@ -289,3 +302,18 @@ GROUP BY City, Segment;
 SELECT ManagerID,firstname, COUNT(*) AS Employees
 FROM Employees
 GROUP BY ManagerID;
+
+SELECT Department, COUNT(*) AS Employees
+FROM Employees
+GROUP BY Department
+HAVING COUNT(*) >= 2;
+SELECT CustomerID, COUNT(OrderID) AS TotalOrders
+FROM Orders
+GROUP BY CustomerID
+HAVING COUNT(OrderID) > 3;
+SELECT Department, AVG(Salary) AS AvgSalary
+FROM Employees
+GROUP BY Department
+HAVING AVG(Salary) > 10000;
+
+select  
