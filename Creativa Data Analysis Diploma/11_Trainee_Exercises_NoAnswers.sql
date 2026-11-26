@@ -229,7 +229,14 @@ ORDER BY OrderMonth;
 -- Exercise 23
 -- Which customers have ordered through both channels (Online and Store)? Return the
 -- columns: CustomerID, Channels.
-SELECT 
+-- Exercise 23
+SELECT
+    CustomerID,
+    STRING_AGG(Channel, ', ') AS Channels
+FROM Orders
+WHERE Channel IN ('Online', 'Store')
+GROUP BY CustomerID
+HAVING COUNT(DISTINCT Channel) = 2;
 -- Exercise 24
 -- Which employees were hired before the Sales Manager? Return the columns: FirstName,
 -- LastName, HireDate.
