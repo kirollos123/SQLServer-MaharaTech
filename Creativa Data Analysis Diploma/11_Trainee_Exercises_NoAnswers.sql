@@ -240,12 +240,31 @@ HAVING COUNT(DISTINCT Channel) = 2;
 -- Exercise 24
 -- Which employees were hired before the Sales Manager? Return the columns: FirstName,
 -- LastName, HireDate.
+SELECT FirstName ,LastName ,HireDate
+from Employees
+WHERE HireDate <(
+       select HireDate
+       from Employees 
+       where JobTitle='Sales Manager'
+)
+
 -- Exercise 25
 -- Which products are more expensive than our most expensive audio product (CategoryID
 -- 5)? Return the columns: ProductName, UnitPrice.
+SELECT ProductName ,UnitPrice 
+from Products 
+where  UnitPrice < (
+        SELECT MAX(UnitPrice)
+FROM Products
+WHERE CategoryID = 5
+
+)
+      
+
 -- Exercise 26
 -- Which customers placed at least one order in 2026? Return the columns: CustomerID,
 -- FirstName, LastName.
+
 -- Exercise 27
 -- Which products have never been sold with a discount? Return the columns: ProductID,
 -- ProductName.
